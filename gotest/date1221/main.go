@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Student struct {
 	Age  int
@@ -35,6 +37,25 @@ func main() {
 	func(name string) {
 		fmt.Println(name)
 	}("hebei")
+
+	//闭包
+	addOne := addInt(1)
+	fmt.Println(addOne())
+	fmt.Println(addOne())
+	fmt.Println(addOne())
+
+	addTwo := addInt(2)
+	fmt.Println(addTwo())
+	fmt.Println(addTwo())
+	fmt.Println(addTwo())
+}
+
+func addInt(n int) func() int {
+	i := 0
+	return func() int {
+		i += n
+		return i
+	}
 }
 
 func plus(a, b int) int {
